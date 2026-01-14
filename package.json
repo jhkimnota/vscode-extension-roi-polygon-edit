@@ -1,0 +1,101 @@
+{
+  "name": "roi-draw",
+  "displayName": "ROI Draw",
+  "description": "Draw polygons on images and extract normalized ROI coordinates",
+  "version": "0.1.0",
+  "publisher": "roi-draw",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "roi-draw.openEditor",
+        "title": "Open ROI Editor",
+        "category": "ROI Draw"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "roi-draw.openEditor",
+          "when": "resourceExtname =~ /\\.(jpg|jpeg|png|gif|webp|bmp)$/i",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ROI Draw",
+      "properties": {
+        "roiDraw.defaultPolygonColor": {
+          "type": "string",
+          "default": "#FF5733",
+          "description": "Default color for new polygons"
+        },
+        "roiDraw.vertexSize": {
+          "type": "number",
+          "default": 6,
+          "description": "Size of polygon vertices in pixels"
+        },
+        "roiDraw.lineWidth": {
+          "type": "number",
+          "default": 2,
+          "description": "Width of polygon edges in pixels"
+        },
+        "roiDraw.autoSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically save ROI data on changes"
+        },
+        "roiDraw.autoSaveDelay": {
+          "type": "number",
+          "default": 2000,
+          "description": "Auto-save delay in milliseconds"
+        },
+        "roiDraw.maxUndoHistory": {
+          "type": "number",
+          "default": 50,
+          "description": "Maximum number of undo steps to keep"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}
