@@ -4,6 +4,10 @@
     "description": "Draw polygons on images and extract normalized ROI coordinates",
     "version": "0.1.1",
     "publisher": "jhkimnota",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jhkimnota/vscode-extension-roi-polygon-edit.git"
+    },
     "engines": {
         "vscode": "^1.85.0"
     },
