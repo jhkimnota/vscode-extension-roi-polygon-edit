@@ -1,0 +1,8 @@
+.vscode/**
+src/**
+tsconfig.json
+webpack.config.js
+image.png
+images.jpeg
+CLAUDE.md
+node_modules/**
